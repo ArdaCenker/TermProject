@@ -7,6 +7,7 @@ import enemy.Enemy;
 public abstract class Tower {
 	
 	private int price;
+	private int bulletDamage;
 	private double range;
 	private double fireRate;
 	private double positionX;
@@ -15,6 +16,7 @@ public abstract class Tower {
 	public Tower(double positionX, double positionY) {
 		this.positionX = positionX;
 		this.positionY = positionY;
+		this.bulletDamage = 10;
 	}
 	
 	public int getPrice() {
@@ -58,5 +60,13 @@ public abstract class Tower {
 	}
 
 	public abstract void shoot(ArrayList<Enemy> enemies);
+
+	public int getBulletDamage() {
+		return bulletDamage;
+	}
+
+	public void setBulletDamage(int bulletDamage) {
+		this.bulletDamage = bulletDamage;
+	}
 	
 }

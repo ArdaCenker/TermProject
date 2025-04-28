@@ -31,7 +31,7 @@ public class Enemy {
 	}
 
 	// returns a vector for direction, this method should be called in every frame
-	public float[] findPath(float location_x, float location_y,
+	public float[] findDirection(float location_x, float location_y,
 							ArrayList<float[][]> targeted_locations)
 	{
 		// Assigns first target loc's x and y values to new variables

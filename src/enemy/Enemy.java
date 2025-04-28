@@ -19,6 +19,38 @@ public class Enemy {
 		this.health = health;
 	}
 
+	public float getSpeed_x() {
+		return speed_x;
+	}
+
+	public void setSpeed_x(float speed_x) {
+		this.speed_x = speed_x;
+	}
+
+	public float getSpeed_y() {
+		return speed_y;
+	}
+
+	public void setSpeed_y(float speed_y) {
+		this.speed_y = speed_y;
+	}
+
+	public float getLocation_x() {
+		return location_x;
+	}
+
+	public void setLocation_x(float location_x) {
+		this.location_x = location_x;
+	}
+
+	public float getLocation_y() {
+		return location_y;
+	}
+
+	public void setLocation_y(float location_y) {
+		this.location_y = location_y;
+	}
+
 	public int getHealth() {
 		return health;
 	}

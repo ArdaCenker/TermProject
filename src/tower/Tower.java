@@ -12,11 +12,14 @@ public abstract class Tower {
 	private double fireRate;
 	private double positionX;
 	private double positionY;
+	private long shootInterval = Long.MAX_VALUE;
+	private long lastShotTime = 0;
 	
 	public Tower(double positionX, double positionY) {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.bulletDamage = 10;
+		this.shootInterval = (long)(1000.0 / fireRate);
 	}
 	
 	public int getPrice() {
@@ -40,7 +43,7 @@ public abstract class Tower {
 	}
 
 	public void setFireRate(double fireRate) {
-		this.fireRate = fireRate;
+	    this.fireRate = fireRate;
 	}
 	
 	public double getPositionX() {
@@ -59,8 +62,6 @@ public abstract class Tower {
 		this.positionY = positionY;
 	}
 
-	public abstract void shoot(ArrayList<Enemy> enemies);
-
 	public int getBulletDamage() {
 		return bulletDamage;
 	}
@@ -69,4 +70,15 @@ public abstract class Tower {
 		this.bulletDamage = bulletDamage;
 	}
 	
+	//checks the shootInterval is passed and sets lastShotTime to now
+	public boolean canShoot() {
+	    long now = System.currentTimeMillis();
+	    if (now - lastShotTime == shootInterval) {
+	        lastShotTime = now;
+	        return true;
+	    }
+	    return false;
+	}
+	
+	public abstract void shoot(ArrayList<Enemy> enemies);
 }

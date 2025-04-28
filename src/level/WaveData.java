@@ -1,14 +1,14 @@
 package level;
 
 public class WaveData {
-	
+	//class for handling enemy waves
 	private int enemyCount;
-	private double spawnTime;
+	private double spawnInterval;
 	private int delay;
 	
-	public WaveData(int enemyCount, double spawnTime, int delay) {
+	public WaveData(int enemyCount, double spawnInterval, int delay) {
 		this.enemyCount = enemyCount;
-		this.spawnTime = spawnTime;
+		this.spawnInterval = spawnInterval;
 		this.delay = delay;
 	}
 	
@@ -19,10 +19,10 @@ public class WaveData {
 		this.delay = delay;
 	}
 	public double getSpawnTime() {
-		return spawnTime;
+		return spawnInterval;
 	}
 	public void setSpawnTime(double spawnTime) {
-		this.spawnTime = spawnTime;
+		this.spawnInterval = spawnTime;
 	}
 	public int getEnemyCount() {
 		return enemyCount;

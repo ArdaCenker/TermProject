@@ -11,21 +11,25 @@ public class Enemy {
 	// location info will probably come from javafx object of the enemy
 	private float location_x;
 	private float location_y;
-
-	// TODO: Build a constructor
-
 	// r_1(x1,y1), r_2(x2,y2)... Rows for targeted_locations
 	// locations will be provided by the LevelManager class
 	ArrayList<float[][]> targeted_locations;
-	
-	public Enemy(int health) {
+
+	// Constructor
+	Enemy (float location_x, float location_y, int health,
+		   ArrayList<float[][]> targeted_locations)
+	{
 		this.health = health;
+		this.location_x = location_x;
+		this.location_y = location_y;
+		this.targeted_locations = targeted_locations;
 	}
 
+	// returns health of the object
 	public int getHealth() {
 		return health;
 	}
-
+	// sets health of the object
 	public void setHealth(int health) {
 		this.health = health;
 	}

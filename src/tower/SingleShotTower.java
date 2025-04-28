@@ -22,7 +22,7 @@ public class SingleShotTower extends Tower {
 		
 			//if canShoot is true and target's health isn't 0, we reduce the health until it becomes 0
 			while(getTarget().getHealth() != 0 && canShoot()) {
-			getTarget().setHealth(getTarget().getHealth() - getBulletDamage());
+				getTarget().setHealth(getTarget().getHealth() - getBulletDamage());
 			}
 		}
 	}
@@ -32,6 +32,7 @@ public class SingleShotTower extends Tower {
 		//if enemy is in range, it becomes target
 		if(calculateDistance(enemy) <= getRange()) {
 			setTarget(enemy);
+			return getTarget();
 		}
 		return null;
 	}

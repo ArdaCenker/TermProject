@@ -24,22 +24,24 @@ public class TripleShotTower extends Tower {
 				enemyTargets[j] = target(enemies.get(j));
 			}
 			
-			for(Enemy enemy : enemyTargets) {
-				//if canShoot is true and target's health isn't 0, we reduce the health until it becomes 0
-				while(enemy.getHealth() != 0 && canShoot()) {
-				enemy.setHealth(enemy.getHealth() - getBulletDamage());
-				}
-			}
 			
+			//AYNI ANDA 3 DÜŞMANIN CANI AZALTILMALI
+			
+			//if canShoot is true and target's health isn't 0, we reduce the health until it becomes 0
+			while(getTarget().getHealth() != 0 && canShoot()) {
+				getTarget().setHealth(getTarget().getHealth() - getBulletDamage());
+			}
 		}
+			
 	}
+
 
 	@Override
 	public Enemy target(Enemy enemy) {
 		//if enemy is in range, it becomes target
 		if(calculateDistance(enemy) <= getRange()) {
 			setTarget(enemy);
-			return enemy;
+			return getTarget();
 		}
 		return null;
 	}

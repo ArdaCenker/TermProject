@@ -31,13 +31,11 @@ public class LaserShotTower extends Tower {
 	}
 
 	@Override
-	public Enemy target(Enemy enemy) {
+	public void target(Enemy enemy) {
 		//if enemy is in range, it becomes target
 		if(calculateDistance(enemy) <= getRange()) {
 			setTarget(enemy);
-			return getTarget();
 		}
-		return null;
 	}
 
 }

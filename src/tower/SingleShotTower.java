@@ -17,7 +17,8 @@ public class SingleShotTower extends Tower {
 	public void shoot(ArrayList<Enemy> enemies) {
 
 		for(int i = 0; i < enemies.size(); i++) {
-
+			
+			//recognizing target
 			target(enemies.get(i));
 		
 			//if canShoot is true and target's health isn't 0, we reduce the health until it becomes 0
@@ -28,12 +29,10 @@ public class SingleShotTower extends Tower {
 	}
 
 	@Override
-	public Enemy target(Enemy enemy) {
+	public void target(Enemy enemy) {
 		//if enemy is in range, it becomes target
 		if(calculateDistance(enemy) <= getRange()) {
 			setTarget(enemy);
-			return getTarget();
 		}
-		return null;
 	}
 }

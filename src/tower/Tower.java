@@ -23,6 +23,22 @@ public abstract class Tower {
 		this.shootInterval = (long)(1000.0 / fireRate);
 	}
 	
+	public long getShootInterval() {
+		return shootInterval;
+	}
+
+	public void setShootInterval(long shootInterval) {
+		this.shootInterval = shootInterval;
+	}
+
+	public long getLastShotTime() {
+		return lastShotTime;
+	}
+
+	public void setLastShotTime(long lastShotTime) {
+		this.lastShotTime = lastShotTime;
+	}
+
 	public int getPrice() {
 		return price;
 	}
@@ -83,7 +99,7 @@ public abstract class Tower {
 	//checks the shootInterval is passed and sets lastShotTime to now
 	public boolean canShoot() {
 	    long now = System.currentTimeMillis();
-	    if (now - lastShotTime == shootInterval) {
+	    if (now - lastShotTime >= shootInterval) {
 	        lastShotTime = now;
 	        return true;
 	    }
@@ -92,7 +108,7 @@ public abstract class Tower {
 	
 	public abstract void shoot(ArrayList<Enemy> enemies);
 	
-	public abstract Enemy target(Enemy enemy);
+	public abstract void target(Enemy enemy);
 	
 	//finds distance between enemy and tower
 	public double calculateDistance(Enemy enemy) {

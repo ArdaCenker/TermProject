@@ -61,7 +61,9 @@ public abstract class Tower {
 
 	public void setFireRate(double fireRate) {
 	    this.fireRate = fireRate;
+	    this.shootInterval = (long)(1000.0 / fireRate);
 	}
+
 	
 	public double getPositionX() {
 		return positionX;

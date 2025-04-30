@@ -13,18 +13,28 @@ public class SingleShotTower extends Tower {
 		this.setFireRate(1.5);
 	}
 
+	// shoot method should be called in every frame
 	@Override
 	public void shoot(ArrayList<Enemy> enemies) {
+		// to keep track of the shortest distance
+		double shortestDistance = 0;
+		// to keep track of the index of closest enemy
+		int shortestIndex = 0;
 
+		// for loop make sure we know the closest enemy to the tower
 		for(int i = 0; i < enemies.size(); i++) {
-			
-			//recognizing target
-			target(enemies.get(i));
-		
-			//if canShoot is true and target's health isn't 0, we reduce the health until it becomes 0
-			while(getTarget().getHealth() != 0 && canShoot()) {
-				getTarget().setHealth(getTarget().getHealth() - getBulletDamage());
+			if (calculateDistance(enemies.get(i)) >= shortestDistance)
+			{
+				shortestIndex = i;
+				shortestDistance = calculateDistance(enemies.get(i));
 			}
+		}
+
+		// if enough time passed from the last shot and enemy is alive
+		if (canShoot() && enemies.get(shortestIndex).isAlive)
+		{
+			// sets target to the closest enemy
+			setTarget(enemies.get(shortestIndex));
 		}
 	}
 

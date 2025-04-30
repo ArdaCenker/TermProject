@@ -14,6 +14,8 @@ public class Enemy {
 	// r_1(x1,y1), r_2(x2,y2)... Rows for targeted_locations
 	// locations will be provided by the LevelManager class
 	ArrayList<float[][]> targeted_locations;
+	// a boolean value to know whether the enemy is alive or not
+	public boolean isAlive;
 
 	// Constructor
 	Enemy (float location_x, float location_y, int health,

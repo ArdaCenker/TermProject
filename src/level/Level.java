@@ -1,13 +1,17 @@
 package level;
 
-import java.util.ArrayList;
+import javafx.scene.layout.GridPane;
 
-public abstract class Level {
+public class Level {
 	private int width;
 	private int height;
 	private int[][] path;
 	
-	public abstract void drawLevel();
+	public Level(int width, int height, int[][] path) {
+		this.width = width;
+		this.height = height;
+		this.path = path;
+	}
 
 	public int[][] getPath() {
 		return path;
@@ -33,5 +37,8 @@ public abstract class Level {
 		this.width = width;
 	}
 	
+	public void drawLevel() {
+		
+	}
 	
 }

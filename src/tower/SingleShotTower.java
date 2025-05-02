@@ -30,8 +30,8 @@ public class SingleShotTower extends Tower {
 			}
 		}
 
-		// if enough time passed from the last shot and enemy is alive
-		if (canShoot() && enemies.get(shortestIndex).isAlive)
+		// if enough time passed from the last shot and enemy's health > 0
+		if (canShoot() && enemies.get(shortestIndex).getHealth() > 0)
 		{
 			// sets target to the closest enemy
 			setTarget(enemies.get(shortestIndex));

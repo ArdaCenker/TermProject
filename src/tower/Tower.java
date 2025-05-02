@@ -1,6 +1,7 @@
 package tower;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import enemy.Enemy;
 
@@ -119,4 +120,38 @@ public abstract class Tower {
 		return distance;
 	}
 
+	// TODO: To be implemented
+	public int[] closestEnemiesIndices(ArrayList<Enemy> enemies)
+	{
+		// to keep track of originalIndexes
+		int[] indices = new int[enemies.size()];
+		// to keep track of distances
+		double[] distances = new double[enemies.size()];
+		// copy of distances as sorted
+		double[] sortedDistances = distances.clone();
+
+		// Assign each value to distances and originalIndexes arrays
+		for (int i = 0; i < enemies.size(); i++) {
+			distances[i] = calculateDistance(enemies.get(i));
+		}
+
+		// sort sortedDistances
+		Arrays.sort(sortedDistances);
+		// compares distances and sortedDistances and assigns indices array's values according to original indices
+		for (int i = 0; i < enemies.size(); i++) {
+
+			for (int j = 0; j < distances.length; j++) {
+				if (sortedDistances[i] == distances[j]) {
+					indices[i] = j;
+				}
+			}
+		}
+
+		return indices;
+	}
+
+
+
+
 }
+

@@ -2,25 +2,22 @@ package tower;
 
 import enemy.Enemy;
 import java.util.ArrayList;
+import javafx.geometry.Point2D;
 
 public class Projectile {
     private int damage;
     private Tower sourceTower;
     private double hitRadius;
-    private double locationX;
-    private double locationY;
-    private double targetLocationX;
-    private double targetLocationY;
+    private Point2D position;
+    private Point2D targetPosition;
     private double speed;
 
     public Projectile(int damage, double hitRadius, int speed, Tower sourceTower) {
         this.damage = damage;
         this.sourceTower = sourceTower;
         this.hitRadius = hitRadius;
-        this.locationX = sourceTower.getPositionX();
-        this.locationY = sourceTower.getPositionY();
-        this.targetLocationX = sourceTower.getTarget().getLocation_x();
-        this.targetLocationY = sourceTower.getTarget().getLocation_y();
+        this.position = sourceTower.getPosition();
+        this.targetPosition = sourceTower.getTarget().getPosition();
         this.speed = speed;
     }
 
@@ -38,9 +35,7 @@ public class Projectile {
     }
 
     public boolean collidesWith(Enemy e) {
-        double dx = this.locationX - e.getLocation_x();
-        double dy = this.locationY - e.getLocation_y();
-        double distance = Math.sqrt(dx * dx + dy * dy);
+        double distance = this.position.distance(targetPosition);
 
         return distance <= this.hitRadius;  // e.g., 10 pixels
     }
@@ -64,26 +59,16 @@ public class Projectile {
 
     // TODO: This method will calculate its direction to the enemy and will move the enemy as the this.speed
     public void moveTowardDirection() {
-        // distances in x and y axes
-        double dx = targetLocationX - this.locationX;
-        double dy = targetLocationY - this.locationY;
+        // Direction vector from current position to target
+        Point2D direction = targetPosition.subtract(position);
 
-        double distance = Math.sqrt(dx * dx + dy * dy);
+        if (direction.magnitude() == 0) return;
 
-        // Avoid division by 0 (when projectile is already at the target)
-        if (distance == 0) return;
+        // Normalize direction and scale by speed
+        Point2D velocity = direction.normalize().multiply(this.speed);
 
-        // trigonometric stuff, dirx^2 + diry^2 will be equal to 1
-        double dirX = dx / distance;
-        double dirY = dy / distance;
-
-        // Scale by speed
-        double velocityX = dirX * this.speed;
-        double velocityY = dirY * this.speed;
-
-        // Move the projectile
-        this.locationX += velocityX;
-        this.locationY += velocityY;
+        // Update position
+        this.position = this.position.add(velocity);
     }
 
 }

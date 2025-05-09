@@ -15,18 +15,18 @@ public class Enemy {
 	private float location_y;
 	// r_1(x1,y1), r_2(x2,y2)... Rows for targeted_locations
 	// locations will be provided by the LevelManager class
-	ArrayList<float[][]> targeted_locations;
+	private ArrayList<Point2D> targetedLocations;
 	// a boolean value to know whether the enemy is alive or not
 	public boolean isAlive;
 
 	// Constructor
 	Enemy (float location_x, float location_y, int health,
-		   ArrayList<float[][]> targeted_locations)
+		   ArrayList<Point2D> targetedLocations)
 	{
 		this.health = health;
 		this.location_x = location_x;
 		this.location_y = location_y;
-		this.targeted_locations = targeted_locations;
+		this.targetedLocations = targetedLocations;
 		this.isAlive = true;
 	}
 
@@ -81,21 +81,24 @@ public class Enemy {
 			return new Point2D(0, 0);
 		}
 
-		Point2D target = targetedLocations.getFirst();
+		// sets first element of targetedLocations as destination
+		Point2D destination = targetedLocations.getFirst();
 
 		// If we've reached the target, move to next
-		if (currentPosition.distance(target) < 0.01) {
+		if (currentPosition.distance(destination) < 0.01) {
+			// removes the first location to change the first location in the list
 			targetedLocations.removeFirst();
 
+			// TODO: if no element left in the list, sets direction as this new Point2D, but this is where it patlıyor
 			if (targetedLocations.isEmpty()) {
 				return new Point2D(0, 0);
 			}
-
-			target = targetedLocations.getFirst();
+			// so now, destination is the next grid
+			destination = targetedLocations.getFirst();
 		}
 
 		// direction = target - current, normalized
-		return target.subtract(currentPosition).normalize();
+		return destination.subtract(currentPosition).normalize();
 	}
 	// handles collision with projectile, reduces health of the enemy
 	public void handleCollision(Projectile projectile) {

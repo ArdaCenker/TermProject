@@ -2,6 +2,7 @@ package enemy;
 
 import java.util.ArrayList;
 import tower.Projectile;
+import javafx.geometry.Point2D;
 
 public class Enemy {
 	
@@ -72,44 +73,29 @@ public class Enemy {
 
 	public void setAliveFalse () {this.isAlive = false;}
 
-	// TODO: BU METHOD VELOCITY DEĞERLERİNİ Mİ VERMELİ, YOKSA VOİD RETURNLEYIP KONUMUMU DEĞİŞTİRMELİ??
+	// TODO: En son grid e geldiği zaman patlıyor
 	// returns normalized vector, this method should be called in every frame
-	public float[] findDirection(float locationX, float locationY,
-								 ArrayList<float[][]> targetedLocations) {
-		// Check if there are no targets left
+	public Point2D findDirection(Point2D currentPosition, ArrayList<Point2D> targetedLocations) {
+		// No more waypoints? Return zero direction
 		if (targetedLocations.isEmpty()) {
-			return new float[] {0, 0};  // no direction
+			return new Point2D(0, 0);
 		}
 
-		// Get current target location
-		float targetX = targetedLocations.getFirst()[0][0];
-		float targetY = targetedLocations.getFirst()[1][0];
+		Point2D target = targetedLocations.getFirst();
 
-		// Check if we've arrived at the target (with float epsilon check)
-		if (Math.abs(targetX - locationX) < 0.01f && Math.abs(targetY - locationY) < 0.01f) {
-			// then removes the first element from the list, we have arrived and need to change our target
+		// If we've reached the target, move to next
+		if (currentPosition.distance(target) < 0.01) {
 			targetedLocations.removeFirst();
 
-			// If no more targets, return zero vector
 			if (targetedLocations.isEmpty()) {
-				return new float[] {0, 0};
+				return new Point2D(0, 0);
 			}
-			// renews target_loc_x and y with the new first element
-			targetX = targetedLocations.getFirst()[0][0];
-			targetY = targetedLocations.getFirst()[1][0];
+
+			target = targetedLocations.getFirst();
 		}
 
-		// Calculate normalized direction vector, dx and dy for distances in x and y axes
-		float dx = targetX - locationX;
-		float dy = targetY - locationY;
-		float magnitude = (float)Math.sqrt(dx * dx + dy * dy);
-
-		if (magnitude == 0) return new float[] {0, 0};  // already at target
-
-		float dirX = dx / magnitude;
-		float dirY = dy / magnitude;
-
-		return new float[] {dirX, dirY};
+		// direction = target - current, normalized
+		return target.subtract(currentPosition).normalize();
 	}
 	// handles collision with projectile, reduces health of the enemy
 	public void handleCollision(Projectile projectile) {

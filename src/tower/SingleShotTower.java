@@ -35,7 +35,15 @@ public class SingleShotTower extends Tower {
 		{
 			// sets target to the closest enemy, if it is in the range
 			if (calculateDistance(enemies.get(shortestIndex)) <= this.getRange())
+			{
+				// Create a projectile
+				Projectile projectile = new Projectile(10, this);
 				setTarget(enemies.get(shortestIndex));
+
+				// projectile object calls hit method to hit closest enemy
+				projectile.hit(enemies.get(shortestIndex));
+			}
+
 		}
 	}
 

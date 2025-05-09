@@ -1,6 +1,7 @@
 package enemy;
 
 import java.util.ArrayList;
+import tower.Projectile;
 
 public class Enemy {
 	
@@ -103,5 +104,10 @@ public class Enemy {
 
 		// return direction
 		return direction;
+	}
+	// handles collision with projectile
+	public void handleCollision(Projectile projectile) {
+		int damage = projectile.getDamage();
+		this.setHealth(this.getHealth() - damage);
 	}
 }

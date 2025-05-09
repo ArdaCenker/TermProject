@@ -72,41 +72,44 @@ public class Enemy {
 
 	public void setAliveFalse () {this.isAlive = false;}
 
-	// returns a vector for direction, this method should be called in every frame
-	public float[] findDirection(float location_x, float location_y,
-							ArrayList<float[][]> targeted_locations)
-	{
-		// Assigns first target loc's x and y values to new variables
-		float target_loc_x = targeted_locations.getFirst()[0][0];
-		float target_loc_y = targeted_locations.getFirst()[1][0];
-		// Creates an array for storing direction
-		float[] direction = new float[2];
+	// TODO: BU METHOD VELOCITY DEĞERLERİNİ Mİ VERMELİ, YOKSA VOİD RETURNLEYIP KONUMUMU DEĞİŞTİRMELİ??
+	// returns normalized vector, this method should be called in every frame
+	public float[] findDirection(float locationX, float locationY,
+								 ArrayList<float[][]> targetedLocations) {
+		// Check if there are no targets left
+		if (targetedLocations.isEmpty()) {
+			return new float[] {0, 0};  // no direction
+		}
 
-		// Checks whether the object arrived to first target destination
-		if (target_loc_x == location_x && target_loc_y == location_y)
-		{
-			// if yes, then removes the first element from the list
-			targeted_locations.removeFirst();
+		// Get current target location
+		float targetX = targetedLocations.getFirst()[0][0];
+		float targetY = targetedLocations.getFirst()[1][0];
+
+		// Check if we've arrived at the target (with float epsilon check)
+		if (Math.abs(targetX - locationX) < 0.01f && Math.abs(targetY - locationY) < 0.01f) {
+			// then removes the first element from the list, we have arrived and need to change our target
+			targetedLocations.removeFirst();
+
+			// If no more targets, return zero vector
+			if (targetedLocations.isEmpty()) {
+				return new float[] {0, 0};
+			}
 			// renews target_loc_x and y with the new first element
-			target_loc_x = targeted_locations.getFirst()[0][0];
-			target_loc_y = targeted_locations.getFirst()[1][0];
+			targetX = targetedLocations.getFirst()[0][0];
+			targetY = targetedLocations.getFirst()[1][0];
 		}
 
-		// Sets direction of enemy according to enemy's and target's location
-		if ((target_loc_x - location_x) != 0){
-			// set path as hypotenuse of two locations, and assign tangent to tangent
-			float tangent = (target_loc_y - location_y) / (target_loc_x - location_x);
-			direction[0] = 1;
-			direction[1] = tangent;
-		}
-		// if divisor value of tangent becomes equivalent to 0
-		else if ((target_loc_x - location_x) == 0) {
-			direction[0] = 0;
-			direction[1] = ((target_loc_y - location_y) > 0) ? 1 : -1;
-		}
+		// Calculate normalized direction vector, dx and dy for distances in x and y axes
+		float dx = targetX - locationX;
+		float dy = targetY - locationY;
+		float magnitude = (float)Math.sqrt(dx * dx + dy * dy);
 
-		// return direction
-		return direction;
+		if (magnitude == 0) return new float[] {0, 0};  // already at target
+
+		float dirX = dx / magnitude;
+		float dirY = dy / magnitude;
+
+		return new float[] {dirX, dirY};
 	}
 	// handles collision with projectile, reduces health of the enemy
 	public void handleCollision(Projectile projectile) {

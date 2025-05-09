@@ -37,13 +37,18 @@ public class SingleShotTower extends Tower {
 			if (calculateDistance(enemies.get(shortestIndex)) <= this.getRange())
 			{
 				// Create a projectile
-				Projectile projectile = new Projectile(10, this);
+				Projectile projectile = new Projectile(10, 10,2,this);
 				setTarget(enemies.get(shortestIndex));
 
 				// projectile object calls hit method to hit closest enemy
 				projectile.hit(enemies.get(shortestIndex));
 			}
 
+		}
+		 // If enemy's health is 0 (or lower somehow), set's enemy's isAlive to false
+		if (enemies.get(shortestIndex).getHealth() <= 0)
+		{
+			enemies.get(shortestIndex).setAliveFalse();
 		}
 	}
 

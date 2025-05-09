@@ -26,6 +26,7 @@ public class Enemy {
 		this.location_x = location_x;
 		this.location_y = location_y;
 		this.targeted_locations = targeted_locations;
+		this.isAlive = true;
 	}
 
 	// returns health of the object
@@ -69,6 +70,8 @@ public class Enemy {
 		this.health = health;
 	}
 
+	public void setAliveFalse () {this.isAlive = false;}
+
 	// returns a vector for direction, this method should be called in every frame
 	public float[] findDirection(float location_x, float location_y,
 							ArrayList<float[][]> targeted_locations)
@@ -105,9 +108,12 @@ public class Enemy {
 		// return direction
 		return direction;
 	}
-	// handles collision with projectile
+	// handles collision with projectile, reduces health of the enemy
 	public void handleCollision(Projectile projectile) {
 		int damage = projectile.getDamage();
 		this.setHealth(this.getHealth() - damage);
+		if (this.getHealth() <= 0) {
+			this.isAlive = false;
+		}
 	}
 }

@@ -11,8 +11,7 @@ public class Enemy {
 	private float speed_x;
 	private float speed_y;
 	// location info will probably come from javafx object of the enemy
-	private float location_x;
-	private float location_y;
+	private Point2D position;
 	// r_1(x1,y1), r_2(x2,y2)... Rows for targeted_locations
 	// locations will be provided by the LevelManager class
 	private ArrayList<Point2D> targetedLocations;
@@ -20,15 +19,16 @@ public class Enemy {
 	public boolean isAlive;
 
 	// Constructor
-	Enemy (float location_x, float location_y, int health,
+	Enemy (Point2D position, int health,
 		   ArrayList<Point2D> targetedLocations)
 	{
 		this.health = health;
-		this.location_x = location_x;
-		this.location_y = location_y;
+		this.position = position;
 		this.targetedLocations = targetedLocations;
 		this.isAlive = true;
 	}
+
+	public Point2D getPosition() {return position;}
 
 	// returns health of the object
 	public float getSpeed_x() {
@@ -47,21 +47,6 @@ public class Enemy {
 		this.speed_y = speed_y;
 	}
 
-	public float getLocation_x() {
-		return location_x;
-	}
-
-	public void setLocation_x(float location_x) {
-		this.location_x = location_x;
-	}
-
-	public float getLocation_y() {
-		return location_y;
-	}
-
-	public void setLocation_y(float location_y) {
-		this.location_y = location_y;
-	}
 
 	public int getHealth() {
 		return health;

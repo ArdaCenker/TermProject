@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import enemy.Enemy;
+import javafx.geometry.Point2D;
 
 public abstract class Tower {
 	
@@ -11,18 +12,18 @@ public abstract class Tower {
 	private int bulletDamage;
 	private double range;
 	private double fireRate;
-	private double positionX;
-	private double positionY;
+	private Point2D position;
 	private long shootInterval = Long.MAX_VALUE;
 	private long lastShotTime = 0;
 	private Enemy target;
 	
-	public Tower(double positionX, double positionY) {
-		this.positionX = positionX;
-		this.positionY = positionY;
+	public Tower(Point2D position) {
+		this.position = position;
 		this.bulletDamage = 10;
 		this.shootInterval = (long)(1000.0 / fireRate);
 	}
+
+	public Point2D getPosition() {return position;}
 	
 	public long getShootInterval() {
 		return shootInterval;
@@ -65,22 +66,6 @@ public abstract class Tower {
 	    this.shootInterval = (long)(1000.0 / fireRate);
 	}
 
-	
-	public double getPositionX() {
-		return positionX;
-	}
-	
-	public void setPositionX(double positionX) {
-		this.positionX = positionX;
-	}
-	
-	public double getPositionY() {
-		return positionY;
-	}
-	
-	public void setPositionY(double positionY) {
-		this.positionY = positionY;
-	}
 
 	public int getBulletDamage() {
 		return bulletDamage;
@@ -112,14 +97,9 @@ public abstract class Tower {
 	public abstract void shoot(ArrayList<Enemy> enemies);
 	
 	public abstract void target(Enemy enemy);
-	
-	//finds distance between enemy and tower
-	public double calculateDistance(Enemy enemy) {
-		double distance = Math.sqrt(
-				Math.pow(enemy.getLocation_x() - getPositionX(),2) + 
-				Math.pow(enemy.getLocation_y() - getPositionY(),2));
-		
-		return distance;
+
+	public double calculateDistance(Point2D otherPoint) {
+		return this.position.distance(otherPoint);
 	}
 
 	// TODO: To be implemented
@@ -134,7 +114,7 @@ public abstract class Tower {
 
 		// Assign each value to distances and originalIndexes arrays
 		for (int i = 0; i < enemies.size(); i++) {
-			distances[i] = calculateDistance(enemies.get(i));
+			distances[i] = this.position.distance(enemies.get(i).getPosition());
 		}
 
 		// sort sortedDistances

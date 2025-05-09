@@ -1,13 +1,14 @@
 package tower;
 
 import java.util.ArrayList;
+import javafx.geometry.Point2D;
 
 import enemy.Enemy;
 
 public class SingleShotTower extends Tower {
 
-	public SingleShotTower(double positionX, double positionY) {
-		super(positionX, positionY);
+	public SingleShotTower(Point2D position) {
+		super(position);
 		this.setPrice(50);
 		this.setRange(1.0);
 		this.setFireRate(1.5);
@@ -17,16 +18,16 @@ public class SingleShotTower extends Tower {
 	@Override
 	public void shoot(ArrayList<Enemy> enemies) {
 		// to keep track of the shortest distance
-		double shortestDistance = calculateDistance(enemies.getFirst());
+		double shortestDistance = calculateDistance(enemies.getFirst().getPosition());
 		// to keep track of the index of closest enemy
 		int shortestIndex = 0;
 
 		// for loop make sure we know the closest enemy to the tower
 		for(int i = 1; i < enemies.size(); i++) {
-			if (calculateDistance(enemies.get(i)) <= shortestDistance)
+			if (calculateDistance(enemies.get(i).getPosition()) <= shortestDistance)
 			{
 				shortestIndex = i;
-				shortestDistance = calculateDistance(enemies.get(i));
+				shortestDistance = calculateDistance(enemies.get(i).getPosition());
 			}
 		}
 
@@ -34,7 +35,7 @@ public class SingleShotTower extends Tower {
 		if (canShoot() && enemies.get(shortestIndex).getHealth() > 0)
 		{
 			// sets target to the closest enemy, if it is in the range
-			if (calculateDistance(enemies.get(shortestIndex)) <= this.getRange())
+			if (calculateDistance(enemies.get(shortestIndex).getPosition()) <= this.getRange())
 			{
 				// Create a projectile
 				Projectile projectile = new Projectile(10, 10,2,this);
@@ -55,7 +56,7 @@ public class SingleShotTower extends Tower {
 	@Override
 	public void target(Enemy enemy) {
 		//if enemy is in range, it becomes target
-		if(calculateDistance(enemy) <= getRange()) {
+		if(calculateDistance(enemy.getPosition()) <= getRange()) {
 			setTarget(enemy);
 		}
 	}

@@ -64,7 +64,26 @@ public class Projectile {
 
     // TODO: This method will calculate its direction to the enemy and will move the enemy as the this.speed
     public void moveTowardDirection() {
+        // distances in x and y axes
+        double dx = targetLocationX - this.locationX;
+        double dy = targetLocationY - this.locationY;
 
+        double distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Avoid division by 0 (when projectile is already at the target)
+        if (distance == 0) return;
+
+        // trigonometric stuff, dirx^2 + diry^2 will be equal to 1
+        double dirX = dx / distance;
+        double dirY = dy / distance;
+
+        // Scale by speed
+        double velocityX = dirX * this.speed;
+        double velocityY = dirY * this.speed;
+
+        // Move the projectile
+        this.locationX += velocityX;
+        this.locationY += velocityY;
     }
 
 }

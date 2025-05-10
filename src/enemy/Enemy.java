@@ -8,8 +8,7 @@ public class Enemy {
 	
 	private int health;
 	// findPath will calculate and return this object's intended speed_x and y
-	private float speed_x;
-	private float speed_y;
+	private double speed;
 	// location info will probably come from javafx object of the enemy
 	private Point2D position;
 	// r_1(x1,y1), r_2(x2,y2)... Rows for targeted_locations
@@ -19,34 +18,22 @@ public class Enemy {
 	public boolean isAlive;
 
 	// Constructor
-	Enemy (Point2D position, int health,
+	Enemy (Point2D position, int health, double speed,
 		   ArrayList<Point2D> targetedLocations)
 	{
 		this.health = health;
 		this.position = position;
 		this.targetedLocations = targetedLocations;
 		this.isAlive = true;
+		this.speed = speed;
 	}
 
 	public Point2D getPosition() {return position;}
 
 	// returns health of the object
-	public float getSpeed_x() {
-		return speed_x;
+	public double getSpeed_x() {
+		return this.speed;
 	}
-
-	public void setSpeed_x(float speed_x) {
-		this.speed_x = speed_x;
-	}
-
-	public float getSpeed_y() {
-		return speed_y;
-	}
-
-	public void setSpeed_y(float speed_y) {
-		this.speed_y = speed_y;
-	}
-
 
 	public int getHealth() {
 		return health;
@@ -57,6 +44,14 @@ public class Enemy {
 	}
 
 	public void setAliveFalse () {this.isAlive = false;}
+
+	// should be called in every frame, moves enemy to its destination according to speed
+	public void moveEnemy ()
+	{
+		Point2D directionVector = findDirection(this.position, this.targetedLocations);
+
+		this.position.add(directionVector.multiply(speed));
+	}
 
 	// TODO: En son grid e geldiği zaman patlıyor
 	// returns normalized vector, this method should be called in every frame

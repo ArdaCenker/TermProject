@@ -2,7 +2,9 @@ package tower;
 
 import java.util.ArrayList;
 import javafx.geometry.Point2D;
-
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import enemy.Enemy;
 
 public class SingleShotTower extends Tower {
@@ -60,4 +62,48 @@ public class SingleShotTower extends Tower {
 			setTarget(enemy);
 		}
 	}
+
+	@Override
+	public Pane drawTower() {
+		Pane castleGroup = new Pane();
+
+        // Kale gövdesi
+        Rectangle body = new Rectangle(650, 400, 200, 200);
+        body.setFill(Color.GRAY);
+
+        // Kale üst kısmı
+        Rectangle up1 = new Rectangle(650, 360, 40, 40);
+        up1.setFill(Color.GRAY);
+        Rectangle up2 = new Rectangle(730, 360, 40, 40);
+        up2.setFill(Color.GRAY);
+        Rectangle up3 = new Rectangle(810, 360, 40, 40);
+        up3.setFill(Color.GRAY);
+        Rectangle up4 = new Rectangle(890, 360, 40, 40);
+        up4.setFill(Color.GRAY);
+
+        // Gölge kısımları
+        Rectangle shadow1 = new Rectangle(690, 360, 20, 40);
+        shadow1.setFill(Color.BLACK);
+        Rectangle shadow2 = new Rectangle(770, 360, 20, 40);
+        shadow2.setFill(Color.BLACK);
+        Rectangle shadow3 = new Rectangle(850, 360, 20, 40);
+        shadow3.setFill(Color.BLACK);
+        Rectangle shadow4 = new Rectangle(930, 360, 20, 40);
+        shadow4.setFill(Color.BLACK);
+
+        Rectangle shadow = new Rectangle(850, 400, 100, 200);
+        shadow.setFill(Color.BLACK);
+
+        // Kale kapısı
+        Rectangle door = new Rectangle(715, 500, 70, 100);
+        door.setFill(Color.BLACK);
+
+        // Kale parçalarını bir gruba ekle
+        castleGroup.getChildren().addAll(body, up1, up2, up3, up4, shadow, shadow1, shadow2, shadow3, shadow4, door);
+        
+        castleGroup.setScaleX(0.1);
+        castleGroup.setScaleY(0.1);
+
+        return castleGroup;
+    }
 }

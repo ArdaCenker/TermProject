@@ -3,6 +3,7 @@ package level;
 import java.util.ArrayList;
 
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -63,7 +64,13 @@ public class Level{
             pathCell.setFill(Color.DARKGRAY);
             grid.add(pathCell, col, row);
         }
-
+        
+        grid.setAlignment(Pos.CENTER);
+        
+        //OYUN SAYFASI DÜZENİNDE KULLANILACAK 
+//        grid.layoutXProperty().bind();
+//        grid.layoutYProperty().bind();
+        
         return grid;
 	}
 	

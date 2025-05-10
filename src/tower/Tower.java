@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import enemy.Enemy;
 import javafx.geometry.Point2D;
+import javafx.scene.layout.Pane;
 
 public abstract class Tower {
 	
@@ -132,7 +133,7 @@ public abstract class Tower {
 		return indices;
 	}
 
-
+	public abstract Pane drawTower();
 
 
 }

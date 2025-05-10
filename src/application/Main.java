@@ -14,7 +14,7 @@ public class Main extends Application {
 		try {
 			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root,800,800);
-			Level level1 = new Level("level1.txt"); 
+			Level level1 = new Level("level1.txt");
 			StackPane pane = new StackPane();
 			pane.getChildren().add(level1.drawLevel());
 			root.setCenter(pane);

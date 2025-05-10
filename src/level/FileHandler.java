@@ -8,15 +8,20 @@ import java.util.Scanner;
 
 public class FileHandler {
 	// data fields
-	private String filePath = "\\datas\\";
+	private String filePath = "src/level/datas/";
+	private String fileName;
 	private int width;
 	private int height;
 	private ArrayList<Point2D> pathGrids = new ArrayList<Point2D>();
 	private ArrayList<WaveData> waveData = new ArrayList<WaveData>();
 
 	// Constructor for FileHandler object
-	public FileHandler(String filePath) {
-		this.filePath = filePath;
+	public FileHandler() {
+		
+	}
+	
+	public FileHandler(String fileName) {
+		this.setFileName(fileName);
 	}
 
 	public String getFilePath() {
@@ -25,6 +30,15 @@ public class FileHandler {
 
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+	
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	// getter methods for data
@@ -98,6 +112,4 @@ public class FileHandler {
             throw new RuntimeException(e);
         }
 	}
-
-
 }

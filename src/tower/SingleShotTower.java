@@ -100,10 +100,17 @@ public class SingleShotTower extends Tower {
 
         // Kale parçalarını bir gruba ekle
         castleGroup.getChildren().addAll(body, up1, up2, up3, up4, shadow, shadow1, shadow2, shadow3, shadow4, door);
+<<<<<<< HEAD
         
         castleGroup.setScaleX(0.1);
         castleGroup.setScaleY(0.1);
 
+=======
+
+        castleGroup.setScaleX(0.1);
+        castleGroup.setScaleY(0.1);
+        
+>>>>>>> arda2
         return castleGroup;
     }
 }

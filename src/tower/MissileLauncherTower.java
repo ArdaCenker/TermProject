@@ -53,7 +53,11 @@ public class MissileLauncherTower extends Tower {
 
 	@Override
 	public Pane drawTower() {
+<<<<<<< HEAD
 		Pane castleGroup = new Pane();
+=======
+        Pane castleGroup = new Pane();
+>>>>>>> arda2
 
         // Kule gövdesi
         Rectangle leftSecBody = new Rectangle(200, 230, 200, 200);
@@ -136,7 +140,11 @@ public class MissileLauncherTower extends Tower {
         
         castleGroup.setScaleX(0.05);
         castleGroup.setScaleY(0.08);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> arda2
         return castleGroup;
     }
 }

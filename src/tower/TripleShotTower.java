@@ -54,7 +54,11 @@ public class TripleShotTower extends Tower {
 	public Pane drawTower() {
 		Pane castleGroup = new Pane();
 
+<<<<<<< HEAD
         //Tower body
+=======
+        // Kule gövdesi
+>>>>>>> arda2
         Rectangle secBody = new Rectangle(650, 230, 200, 200);
         secBody.setFill(Color.GRAY);
 
@@ -67,7 +71,11 @@ public class TripleShotTower extends Tower {
         Rectangle shadow = new Rectangle(850, 400, 100, 200);
         shadow.setFill(Color.BLACK);
 
+<<<<<<< HEAD
         //Upper tower
+=======
+        // Kule üst kısmı
+>>>>>>> arda2
         Rectangle up1 = new Rectangle(650, 190, 40, 40);
         up1.setFill(Color.GRAY);
         Rectangle up2 = new Rectangle(730, 190, 40, 40);
@@ -77,7 +85,11 @@ public class TripleShotTower extends Tower {
         Rectangle up4 = new Rectangle(890, 190, 40, 40);
         up4.setFill(Color.GRAY);
 
+<<<<<<< HEAD
         //Shadows
+=======
+        // Gölge kısımları
+>>>>>>> arda2
         Rectangle shadow1 = new Rectangle(690, 190, 20, 40);
         shadow1.setFill(Color.BLACK);
         Rectangle shadow2 = new Rectangle(770, 190, 20, 40);
@@ -87,13 +99,21 @@ public class TripleShotTower extends Tower {
         Rectangle shadow4 = new Rectangle(930, 190, 20, 40);
         shadow4.setFill(Color.BLACK);
 
+<<<<<<< HEAD
         //Doors
+=======
+        // Kapılar
+>>>>>>> arda2
         Rectangle door = new Rectangle(715, 500, 70, 100);
         door.setFill(Color.BLACK);
         Rectangle secDoor = new Rectangle(715, 300, 70, 100);
         secDoor.setFill(Color.BLACK);
 
+<<<<<<< HEAD
         //Add all parts to the group
+=======
+        // Tüm parçaları gruba ekle
+>>>>>>> arda2
         castleGroup.getChildren().addAll(
             secBody, secShadow, body, up1, up2, up3, up4,
             shadow, shadow1, shadow2, shadow3, shadow4, door, secDoor
@@ -101,9 +121,16 @@ public class TripleShotTower extends Tower {
         
         castleGroup.setScaleX(0.1);
         castleGroup.setScaleY(0.1);
+<<<<<<< HEAD
 
         return castleGroup;
     }
 
 
+=======
+        
+        return castleGroup;
+    }
+
+>>>>>>> arda2
 }

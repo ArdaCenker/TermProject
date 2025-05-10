@@ -48,11 +48,7 @@ public class LaserShotTower extends Tower {
 	public Pane drawTower() {
 		Pane castleGroup = new Pane();
 
-<<<<<<< HEAD
         //Tower body
-=======
-        // Kale gövdesi
->>>>>>> arda2
         Rectangle secBody = new Rectangle(670, 230, 170, 170);
         secBody.setFill(Color.GRAY);
         secBody.setStroke(Color.BLACK);
@@ -119,11 +115,7 @@ public class LaserShotTower extends Tower {
         Rectangle door = new Rectangle(715, 500, 70, 100);
         door.setFill(Color.BLACK);
 
-<<<<<<< HEAD
         //Add all parts to the group
-=======
-        // Tüm parçaları gruba ekle
->>>>>>> arda2
         castleGroup.getChildren().addAll(
             secBody, secUp1, secUp2, secUp3, secUp4,
             secShadow1, secShadow2, secShadow3, secShadow4, secShadow,

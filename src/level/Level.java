@@ -66,15 +66,11 @@ public class Level{
         }
         
         grid.setAlignment(Pos.CENTER);
-<<<<<<< HEAD
-        
+
         //OYUN SAYFASI DÜZENİNDE KULLANILACAK 
 //        grid.layoutXProperty().bind();
 //        grid.layoutYProperty().bind();
-        
-=======
 
->>>>>>> arda2
         return grid;
 	}
 	

@@ -103,9 +103,6 @@ public class SingleShotTower extends Tower {
 
         castleGroup.setScaleX(0.1);
         castleGroup.setScaleY(0.1);
-
-        castleGroup.setScaleX(0.1);
-        castleGroup.setScaleY(0.1);
         
         return castleGroup;
     }

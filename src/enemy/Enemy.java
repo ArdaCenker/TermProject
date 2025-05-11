@@ -1,8 +1,20 @@
 package enemy;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import tower.Projectile;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 
 public class Enemy {
 	
@@ -26,6 +38,10 @@ public class Enemy {
 		this.targetedLocations = targetedLocations;
 		this.isAlive = true;
 		this.speed = speed;
+	}
+
+	public Enemy() {
+		
 	}
 
 	public Point2D getPosition() {return position;}
@@ -88,4 +104,39 @@ public class Enemy {
 			this.isAlive = false;
 		}
 	}
+	
+	public Pane drawEnemy() {
+		Pane enemy = new Pane();
+
+        // Üçgen oluştur
+        Polygon triangle = new Polygon();
+        triangle.getPoints().addAll(
+                100.0, 50.0,
+                80.0, 150.0,
+                130.0, 150.0
+        );
+        triangle.setFill(Color.RED);
+        triangle.setStroke(Color.BLACK);
+
+        // Yuvarlak oluştur
+        Circle circle = new Circle(102, 70, 20);
+        circle.setFill(Color.RED);
+        circle.setStroke(Color.BLACK);
+
+        // Progress Bar oluştur
+        ProgressBar progressBar = new ProgressBar(1);
+        progressBar.setLayoutX(50); // X konumunu ayarla
+        progressBar.setLayoutY(27); // Y konumunu ayarla
+        progressBar.setPrefWidth(100); // Genişliği ayarla
+        progressBar.setStyle("-fx-accent: red;-fx-box-border: transparent; -fx-background: black");
+        
+        enemy.setScaleX(0.35);
+        enemy.setScaleY(0.35);
+        
+        // Tasarlanan cisimleri grupla
+        enemy.getChildren().addAll(triangle, circle, progressBar);
+        
+        return enemy;
+	}
+	
 }

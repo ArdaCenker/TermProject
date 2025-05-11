@@ -1,5 +1,6 @@
 package application;
 	
+import enemy.Enemy;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import level.Level;
@@ -16,12 +17,13 @@ public class Main extends Application {
 
 			Scene scene = new Scene(root,800,800);
 			Level level1 = new Level("level1.txt");
+			Enemy enemy = new Enemy();
 			StackPane pane = new StackPane();
-			pane.getChildren().add(level1.drawLevel());
+			pane.getChildren().addAll(level1.drawLevel(),enemy.drawEnemy());
 			root.setCenter(pane);
 
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			root.getChildren().addAll(level1.drawLevel());
+
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

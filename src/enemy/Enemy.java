@@ -26,9 +26,7 @@ public class Enemy {
 	private int gridSize;
 
 	// Constructor
-	public Enemy (Point2D position, int health, double speed,
-		   ArrayList<Point2D> targetedLocations)
-	Enemy (Point2D position, int health, double speed, int gridSize,
+	public Enemy (Point2D position, int health, double speed, int gridSize,
 		   ArrayList<Point2D> targetedGrids)
 	{
 		this.health = health;

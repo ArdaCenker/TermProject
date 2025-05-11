@@ -26,7 +26,8 @@ public class Level{
 		this.height = handler.getHeight();
 		this.path = handler.getPathGrids();
 	}
-	
+
+    public int getBOX_SIZE () {return BOX_SIZE;}
 	public int getWidth() {
 		return width;
 	}

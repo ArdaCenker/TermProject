@@ -1,8 +1,14 @@
 package enemy;
 
 import java.util.ArrayList;
+
 import tower.Projectile;
 import javafx.geometry.Point2D;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 
 public class Enemy {
 	
@@ -20,6 +26,8 @@ public class Enemy {
 	private int gridSize;
 
 	// Constructor
+	public Enemy (Point2D position, int health, double speed,
+		   ArrayList<Point2D> targetedLocations)
 	Enemy (Point2D position, int health, double speed, int gridSize,
 		   ArrayList<Point2D> targetedGrids)
 	{
@@ -30,6 +38,10 @@ public class Enemy {
 		this.speed = speed;
 		this.gridSize = gridSize;
 		this.targetedCoordinates = gridToCoordinates(targetedGrids);
+	}
+
+	public Enemy() {
+
 	}
 
 	public Point2D getPosition() {return position;}
@@ -92,6 +104,44 @@ public class Enemy {
 			this.isAlive = false;
 		}
 	}
+
+	public Pane drawEnemy(Point2D position) {
+		Pane enemy = new Pane();
+
+        // Üçgen oluştur
+        Polygon triangle = new Polygon();
+        triangle.getPoints().addAll(
+                100.0, 50.0,
+                80.0, 150.0,
+                130.0, 150.0
+        );
+        triangle.setFill(Color.RED);
+        triangle.setStroke(Color.BLACK);
+
+        // Yuvarlak oluştur
+        Circle circle = new Circle(102, 70, 20);
+        circle.setFill(Color.RED);
+        circle.setStroke(Color.BLACK);
+
+        // Progress Bar oluştur
+        ProgressBar progressBar = new ProgressBar(1);
+        progressBar.setLayoutX(50); // X konumunu ayarla
+        progressBar.setLayoutY(27); // Y konumunu ayarla
+        progressBar.setPrefWidth(100); // Genişliği ayarla
+        progressBar.setStyle("-fx-accent: red;-fx-box-border: transparent; -fx-background: black");
+
+        enemy.setScaleX(0.35);
+        enemy.setScaleY(0.35);
+
+        enemy.setLayoutX(position.getX());
+        enemy.setLayoutY(position.getY());
+
+        // Tasarlanan cisimleri grupla
+        enemy.getChildren().addAll(triangle, circle, progressBar);
+
+        return enemy;
+	}
+
 
 	// This method finds grids' centers' coordinates according to their grid indices
 	private ArrayList<Point2D> gridToCoordinates(ArrayList<Point2D> gridList)

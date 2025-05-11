@@ -48,7 +48,7 @@ public class FileHandler {
 	public ArrayList<WaveData> getWaveData() {return this.waveData;}
 
 	// will be called only when new level is initialized
-	public void handleFile(String fileName){
+	public void handleFile(){
 		// Instantiates file for given path
 		File file = new File(filePath + fileName);
 		// tries to scan the file if it exists

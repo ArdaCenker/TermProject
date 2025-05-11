@@ -1,20 +1,14 @@
 package enemy;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import tower.Projectile;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
-import javafx.util.Duration;
 
 public class Enemy {
 	
@@ -30,7 +24,7 @@ public class Enemy {
 	public boolean isAlive;
 
 	// Constructor
-	Enemy (Point2D position, int health, double speed,
+	public Enemy (Point2D position, int health, double speed,
 		   ArrayList<Point2D> targetedLocations)
 	{
 		this.health = health;
@@ -105,7 +99,7 @@ public class Enemy {
 		}
 	}
 	
-	public Pane drawEnemy() {
+	public Pane drawEnemy(Point2D position) {
 		Pane enemy = new Pane();
 
         // Üçgen oluştur
@@ -132,6 +126,9 @@ public class Enemy {
         
         enemy.setScaleX(0.35);
         enemy.setScaleY(0.35);
+        
+        enemy.setLayoutX(position.getX());
+        enemy.setLayoutY(position.getY());
         
         // Tasarlanan cisimleri grupla
         enemy.getChildren().addAll(triangle, circle, progressBar);

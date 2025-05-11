@@ -16,12 +16,15 @@ public class Level{
 	private static final int BOX_SIZE = 50;
 	private int width;
 	private int height;
-	private ArrayList<Point2D> path;
-	private FileHandler handler;
+	private ArrayList<Point2D> path;;
+	private FileHandler handler = new FileHandler();
 	
 	public Level(String fileName) {
-		this.handler = new FileHandler();
-		handler.handleFile(fileName);
+		this.handler = new FileHandler(fileName);
+		handler.handleFile();
+		this.width = handler.getWidth();
+		this.height = handler.getHeight();
+		this.path = handler.getPathGrids();
 	}
 	
 	public int getWidth() {
@@ -48,14 +51,14 @@ public class Level{
         grid.setGridLinesVisible(false);
         grid.setHgap(0);
         grid.setVgap(0);
-        grid.setPrefSize(handler.getWidth() * BOX_SIZE, handler.getHeight() * BOX_SIZE);
+        grid.setPrefSize(width * BOX_SIZE, height * BOX_SIZE);
         
         Timeline timeline = new Timeline();
         Duration baseDelay = Duration.millis(350);
         
         //Ground cells
-        for (int row = 0; row < handler.getHeight(); row++) {
-            for (int col = 0; col < handler.getWidth(); col++) {
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
                 Rectangle cell = new Rectangle(BOX_SIZE, BOX_SIZE);
                 cell.setFill(Color.LIGHTBLUE);
                 cell.setStroke(Color.WHITE);
@@ -76,7 +79,7 @@ public class Level{
         
         
         //Path cells
-        for (Point2D p : handler.getPathGrids()) {
+        for (Point2D p : path) {
             int col = (int) p.getX();
             int row = (int) p.getY();
             Rectangle pathCell = new Rectangle(BOX_SIZE, BOX_SIZE);

@@ -146,8 +146,8 @@ public class Enemy {
 	{
 		// for each grid's center's x and y element, calculated via formula (2 * gridSize * index) + (gridSize/2)
 		for (int i = 0; i < gridList.size(); i++) {
-			double xCoordinate = gridList.get(i).getX() * gridSize * i + gridSize/2;
-			double yCoordinate = gridList.get(i).getY() * gridSize * i + gridSize/2;
+			double xCoordinate = gridList.get(i).getX() * gridSize * i + (double)gridSize/2;
+			double yCoordinate = gridList.get(i).getY() * gridSize * i + (double)gridSize/2;
 
 			gridList.set(i, new Point2D(xCoordinate, yCoordinate));
 		}

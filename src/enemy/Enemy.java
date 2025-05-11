@@ -13,19 +13,23 @@ public class Enemy {
 	private Point2D position;
 	// r_1(x1,y1), r_2(x2,y2)... Rows for targeted_locations
 	// locations will be provided by the LevelManager class
-	private ArrayList<Point2D> targetedLocations;
+	private ArrayList<Point2D> targetedGrids;
 	// a boolean value to know whether the enemy is alive or not
 	public boolean isAlive;
+	private ArrayList<Point2D> targetedCoordinates;
+	private int gridSize;
 
 	// Constructor
-	Enemy (Point2D position, int health, double speed,
-		   ArrayList<Point2D> targetedLocations)
+	Enemy (Point2D position, int health, double speed, int gridSize,
+		   ArrayList<Point2D> targetedGrids)
 	{
 		this.health = health;
 		this.position = position;
-		this.targetedLocations = targetedLocations;
+		this.targetedGrids = targetedGrids;
 		this.isAlive = true;
 		this.speed = speed;
+		this.gridSize = gridSize;
+		this.targetedCoordinates = gridToCoordinates(targetedGrids);
 	}
 
 	public Point2D getPosition() {return position;}
@@ -48,33 +52,33 @@ public class Enemy {
 	// should be called in every frame, moves enemy to its destination according to speed
 	public void moveEnemy ()
 	{
-		Point2D directionVector = findDirection(this.position, this.targetedLocations);
+		Point2D directionVector = findDirection(this.position, this.targetedCoordinates);
 
 		this.position.add(directionVector.multiply(speed));
 	}
 
 	// TODO: En son grid e geldiği zaman patlıyor
 	// returns normalized vector, this method should be called in every frame
-	public Point2D findDirection(Point2D currentPosition, ArrayList<Point2D> targetedLocations) {
+	public Point2D findDirection(Point2D currentPosition, ArrayList<Point2D> targetedCoordinates) {
 		// No more waypoints? Return zero direction
-		if (targetedLocations.isEmpty()) {
+		if (targetedCoordinates.isEmpty()) {
 			return new Point2D(0, 0);
 		}
 
 		// sets first element of targetedLocations as destination
-		Point2D destination = targetedLocations.getFirst();
+		Point2D destination = targetedCoordinates.getFirst();
 
 		// If we've reached the target, move to next
 		if (currentPosition.distance(destination) < 0.01) {
 			// removes the first location to change the first location in the list
-			targetedLocations.removeFirst();
+			targetedCoordinates.removeFirst();
 
 			// TODO: if no element left in the list, sets direction as this new Point2D, but this is where it patlıyor
-			if (targetedLocations.isEmpty()) {
+			if (targetedCoordinates.isEmpty()) {
 				return new Point2D(0, 0);
 			}
 			// so now, destination is the next grid
-			destination = targetedLocations.getFirst();
+			destination = targetedCoordinates.getFirst();
 		}
 
 		// direction = target - current, normalized
@@ -87,5 +91,18 @@ public class Enemy {
 		if (this.getHealth() <= 0) {
 			this.isAlive = false;
 		}
+	}
+
+	// This method finds grids' centers' coordinates according to their grid indices
+	private ArrayList<Point2D> gridToCoordinates(ArrayList<Point2D> gridList)
+	{
+		// for each grid's center's x and y element, calculated via formula (2 * gridSize * index) + (gridSize/2)
+		for (int i = 0; i < gridList.size(); i++) {
+			double xCoordinate = gridList.get(i).getX() * gridSize * i + gridSize/2;
+			double yCoordinate = gridList.get(i).getY() * gridSize * i + gridSize/2;
+
+			gridList.set(i, new Point2D(xCoordinate, yCoordinate));
+		}
+		return gridList;
 	}
 }

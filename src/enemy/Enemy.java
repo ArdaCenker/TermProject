@@ -64,7 +64,7 @@ public class Enemy {
 	{
 		Point2D directionVector = findDirection(this.position, this.targetedCoordinates);
 
-		this.position.add(directionVector.multiply(speed));
+		this.position = this.position.add(directionVector.multiply(speed));
 	}
 
 	// TODO: En son grid e geldiği zaman patlıyor

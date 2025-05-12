@@ -19,7 +19,7 @@ public class Main extends Application {
 			Level level1 = new Level("level1.txt");
 			// TODO: ARDA buraya BOX_SIZE ı parametre olarak da ekledim kuzen!!
 			Enemy enemy = new Enemy(level1.getPath().get(0), 100, 10, level1.getBOX_SIZE() ,level1.getPath());
-			enemy.moveEnemy();
+			//enemy.moveEnemy();
 			StackPane pane = new StackPane();
 			pane.getChildren().addAll(level1.drawLevel(),enemy.drawEnemy(enemy.getPosition()));
 			root.setCenter(pane);

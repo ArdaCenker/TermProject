@@ -35,7 +35,7 @@ public class Enemy {
 		this.isAlive = true;
 		this.speed = speed;
 		this.gridSize = gridSize;
-		this.targetedCoordinates = gridToCoordinates(targetedGrids);
+		this.targetedCoordinates = gridToCoordinates(this.targetedGrids);
 	}
 
 	public Enemy() {

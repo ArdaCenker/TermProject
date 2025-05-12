@@ -49,10 +49,10 @@ public class Main extends Application {
 						double dt = (now - lastUpdate) / 1_000_000_000.0; // seconds
 
 						// TODO: I might need to handle different pc performances later on in this.
-						enemy.moveEnemy();
+						enemy.moveEnemy(dt);
 						Point2D pos = enemy.getPosition(); // updated position
-						enemyVisual.setLayoutX(pos.getX()); // update visuals
-						enemyVisual.setLayoutY(pos.getY());
+						enemyVisual.setTranslateX(pos.getX()); // update visuals
+						enemyVisual.setTranslateY(pos.getY());
 					}
 					lastUpdate = now;
 				}

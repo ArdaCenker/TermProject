@@ -60,11 +60,11 @@ public class Enemy {
 	public void setAliveFalse () {this.isAlive = false;}
 
 	// should be called in every frame, moves enemy to its destination according to speed
-	public void moveEnemy ()
+	public void moveEnemy (double dt)
 	{
 		Point2D directionVector = findDirection(this.position, this.targetedCoordinates);
 
-		this.position = this.position.add(directionVector.multiply(speed));
+		this.position = this.position.add(directionVector.multiply(speed * dt));
 	}
 
 	// TODO: En son grid e geldiği zaman patlıyor

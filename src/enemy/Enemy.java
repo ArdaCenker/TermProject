@@ -35,7 +35,7 @@ public class Enemy {
 		this.isAlive = true;
 		this.speed = speed;
 		this.gridSize = gridSize;
-		this.targetedCoordinates = gridToCoordinates(this.targetedGrids);
+		this.targetedCoordinates = gridToCoordinates(new ArrayList<>(targetedGrids));
 	}
 
 	public Enemy() {
@@ -146,8 +146,8 @@ public class Enemy {
 	{
 		// for each grid's center's x and y element, calculated via formula (2 * gridSize * index) + (gridSize/2)
 		for (int i = 0; i < gridList.size(); i++) {
-			double xCoordinate = gridList.get(i).getX() * gridSize * i + (double)gridSize/2;
-			double yCoordinate = gridList.get(i).getY() * gridSize * i + (double)gridSize/2;
+			double xCoordinate = gridList.get(i).getX() * gridSize + (double)gridSize/2;
+			double yCoordinate = gridList.get(i).getY() * gridSize + (double)gridSize/2;
 
 			gridList.set(i, new Point2D(xCoordinate, yCoordinate));
 		}

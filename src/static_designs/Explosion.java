@@ -1,3 +1,5 @@
+package static_designs;
+
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.scene.Scene;

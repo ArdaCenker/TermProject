@@ -1,3 +1,5 @@
+package static_designs;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;

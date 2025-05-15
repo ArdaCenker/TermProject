@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import enemy.Enemy;
 
-//150123012 Arda Cenker Karagöz - 150124005 Talha Zencirkıran - 150123002 Ali Faik Aksoy
+//150123012 Arda Cenker Karagöz - 150124005 Talha Zencirkıran - 150123002 Ali Faik Aksoy(tasarım)
 public class SingleShotTower extends Tower {
 
 	public SingleShotTower(Point2D position) {

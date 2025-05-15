@@ -18,6 +18,7 @@ public class Level{
 	private int height;
 	private ArrayList<Point2D> path;;
 	private FileHandler handler = new FileHandler();
+	private int currentLevel;
 	
 	public Level(String fileName) {
 		this.handler = new FileHandler(fileName);
@@ -60,7 +61,7 @@ public class Level{
         //Ground cells
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                Rectangle cell = new Rectangle(BOX_SIZE, BOX_SIZE);
+                Rectangle cell = new Rectangle(row * BOX_SIZE, col * BOX_SIZE, BOX_SIZE, BOX_SIZE);
                 cell.setFill(Color.LIGHTBLUE);
                 cell.setStroke(Color.WHITE);
                 cell.setScaleX(0);
@@ -83,7 +84,7 @@ public class Level{
         for (Point2D p : path) {
             int col = (int) p.getX();
             int row = (int) p.getY();
-            Rectangle pathCell = new Rectangle(BOX_SIZE, BOX_SIZE);
+            Rectangle pathCell = new Rectangle(row * BOX_SIZE, col * BOX_SIZE, BOX_SIZE, BOX_SIZE);
             pathCell.setFill(Color.DARKGRAY);
             pathCell.setScaleX(0);
             pathCell.setScaleY(0);
@@ -106,8 +107,21 @@ public class Level{
 //        grid.layoutYProperty().bind();
         
         timeline.play();
-        grid.setAlignment(Pos.CENTER);
+        //grid.setAlignment(Pos.CENTER);
         return grid;
+	}
+
+	public int getCurrentLevel() {
+		
+		String number = handler.getFileName().substring(5, 6);
+		
+		currentLevel = Integer.parseInt(number);
+		
+		return currentLevel;
+	}
+
+	public void setCurrentLevel(int currentLevel) {
+		this.currentLevel = currentLevel;
 	}
 	
 }

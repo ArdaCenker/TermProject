@@ -9,6 +9,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 
+//150123002 Ali Faik Aksoy
 public class EnemyDesign extends Application {
 
     @Override

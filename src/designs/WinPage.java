@@ -7,24 +7,26 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import level.Level;
 
+//150123012 Arda Cenker Karagöz - 150123002 Ali Faik Aksoy(sadece tasarım)
+//this class for win page
 public class WinPage {
 	
 	private Level level;
 	private int currentLevel;
-	private int nextLevel;
 	
 	public WinPage() {
 		currentLevel = level.getCurrentLevel();
-		nextLevel = currentLevel + 1;
 	}
 	
+	//this method for showing win page
 	public Scene showWinPage() {
 		Label label = new Label("You won!");
 	    label.setStyle("-fx-font-size: 30px; -fx-text-fill: black;"); 
 	   
 	    Button contButton = new Button("Continue to Next Level");
 	    contButton.setPrefSize(300, 150); 
-	    
+	    //we assign an action the the button if we press to the button, we see game screen for 
+	    //next level with increasing currentLevel for 1.
 	    if(currentLevel < 5) {
 //	    	contButton.setOnAction();
 	    }

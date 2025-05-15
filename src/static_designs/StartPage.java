@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+//150123002 Ali Faik Aksoy
 public class StartPage extends Application {
     @Override
     public void start(Stage primaryStage) {

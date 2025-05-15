@@ -10,14 +10,17 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 
+//150123012 Arda Cenker Karagöz - 150123002 Ali Faik Aksoy(sadece tasarım)
+//this class for showing lose page
 public class LosePage {
 	
-	protected StartPage page;
+	private StartPage page;
 	
 	public LosePage() {
 		this.page = new StartPage();
 	}
 
+	//this method shows lose page
     public Scene showLosePage() {
 		Label label = new Label("You lose!");
 	    label.setStyle("-fx-font-size: 30px; -fx-text-fill: black;"); 
@@ -25,6 +28,7 @@ public class LosePage {
 	    Button contButton = new Button("Back to Main Menu");
 	    contButton.setPrefSize(300, 150); 
 	    
+	    //we assign an action the the button if we press to the button, we see start page.
 	    contButton.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override 
 	    	public void handle(ActionEvent e) {

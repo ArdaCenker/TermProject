@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+//150123012 Arda Cenker Karagöz - 150124005 Talha Zencirkıran - 150123002 Ali Faik Aksoy
 public class TripleShotTower extends Tower {
 
 	public TripleShotTower(Point2D position) {
@@ -41,7 +42,7 @@ public class TripleShotTower extends Tower {
 			
 	}
 
-
+	//this method recognizes the enemy as a target.
 	@Override
 	public void target(Enemy enemy) {
 		//if enemy is in range, it becomes target
@@ -50,6 +51,7 @@ public class TripleShotTower extends Tower {
 		}
 	}
 
+	//this method draws triple shot tower
 	@Override
 	public Pane drawTower() {
 		Pane castleGroup = new Pane();

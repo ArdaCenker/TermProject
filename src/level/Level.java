@@ -11,7 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-
+	
+//150123012 Arda Cenker Karagöz - 150123002 Ali Faik Aksoy(sadece javafx kısmı)
 public class Level{
 	private static final int BOX_SIZE = 50;
 	private int width;
@@ -28,6 +29,7 @@ public class Level{
 		this.path = handler.getPathGrids();
 	}
 
+	//getter and setters for data fields
     public int getBOX_SIZE () {return BOX_SIZE;}
 	public int getWidth() {
 		return width;
@@ -48,6 +50,7 @@ public class Level{
 		this.path = path;
 	}
 	
+	//this method draws level grid with we claimed path from file handler class with delay animation.
 	public GridPane drawLevel() {
 		GridPane grid = new GridPane();
         grid.setGridLinesVisible(false);
@@ -58,7 +61,7 @@ public class Level{
         Timeline timeline = new Timeline();
         Duration baseDelay = Duration.millis(350);
         
-        //Ground cells
+        //drawing ground cells
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 Rectangle cell = new Rectangle(row * BOX_SIZE, col * BOX_SIZE, BOX_SIZE, BOX_SIZE);
@@ -80,7 +83,7 @@ public class Level{
         }
         
         
-        //Path cells
+        //drawing path cells
         for (Point2D p : path) {
             int col = (int) p.getX();
             int row = (int) p.getY();
@@ -110,7 +113,8 @@ public class Level{
         //grid.setAlignment(Pos.CENTER);
         return grid;
 	}
-
+	
+	//this method gets current level in integer form
 	public int getCurrentLevel() {
 		
 		String number = handler.getFileName().substring(5, 6);

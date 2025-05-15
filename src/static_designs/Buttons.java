@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 
+//150123002 Ali Faik Aksoy
 public class Buttons extends Application {
     @Override
     public void start(Stage primaryStage) {
@@ -21,8 +22,8 @@ public class Buttons extends Application {
         singleShotPane.setMinSize(150, 100); // Minimum boyut
         singleShotPane.setMaxSize(150, 100); // Maksimum boyut
         singleShotPane.setAlignment(Pos.CENTER); // İçeriği ortala
-        singleShotCastleGroup.setScaleX(0.15); // Genişliği %20'ye düşür
-        singleShotCastleGroup.setScaleY(0.15); // Yüksekliği %20'ye düşür
+        singleShotCastleGroup.setScaleX(0.15); // Genişliği %15'e düşür
+        singleShotCastleGroup.setScaleY(0.15); // Yüksekliği %15'e düşür
 
         // tower1 butonunu oluştur ve sarılmış figürü ekle
         Button tower1 = new Button();
@@ -39,8 +40,8 @@ public class Buttons extends Application {
         laserPane.setMinSize(150, 100); // Minimum boyut
         laserPane.setMaxSize(150, 100); // Maksimum boyut
         laserPane.setAlignment(Pos.CENTER); // İçeriği ortala
-        laserCastleGroup.setScaleX(0.15); // Genişliği %20'ye düşür
-        laserCastleGroup.setScaleY(0.15); // Yüksekliği %20'ye düşür
+        laserCastleGroup.setScaleX(0.15); // Genişliği %15'e düşür
+        laserCastleGroup.setScaleY(0.15); // Yüksekliği %15'e düşür
 
         // tower2 butonunu oluştur ve sarılmış figürü ekle
         Button tower2 = new Button();
@@ -57,8 +58,8 @@ public class Buttons extends Application {
         tripleShotPane.setMinSize(150, 100); // Minimum boyut
         tripleShotPane.setMaxSize(150, 100); // Maksimum boyut
         tripleShotPane.setAlignment(Pos.CENTER); // İçeriği ortala
-        tripleShotCastleGroup.setScaleX(0.15); // Genişliği %20'ye düşür
-        tripleShotCastleGroup.setScaleY(0.15); // Yüksekliği %20'ye düşür
+        tripleShotCastleGroup.setScaleX(0.15); // Genişliği %15'e düşür
+        tripleShotCastleGroup.setScaleY(0.15); // Yüksekliği %15'e düşür
 
         // tower3 butonunu oluştur ve sarılmış figürü ekle
         Button tower3 = new Button();
@@ -75,8 +76,8 @@ public class Buttons extends Application {
         misilleLauncherPane.setMinSize(150, 100); // Minimum boyut
         misilleLauncherPane.setMaxSize(150, 100); // Maksimum boyut
         misilleLauncherPane.setAlignment(Pos.CENTER); // İçeriği ortala
-        misilleLauncherCastleGroup.setScaleX(0.15); // Genişliği %20'ye düşür
-        misilleLauncherCastleGroup.setScaleY(0.15); // Yüksekliği %20'ye düşür
+        misilleLauncherCastleGroup.setScaleX(0.15); // Genişliği %15'e düşür
+        misilleLauncherCastleGroup.setScaleY(0.15); // Yüksekliği %15'e düşür
 
         // tower4 butonunu oluştur ve sarılmış figürü ekle
         Button tower4 = new Button();

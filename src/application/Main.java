@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import level.Level;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 
@@ -21,7 +23,12 @@ public class Main extends Application {
 			Enemy enemy = new Enemy(level1.getPath().get(0), 100, 10, level1.getBOX_SIZE() ,level1.getPath());
 			//enemy.moveEnemy();
 			StackPane pane = new StackPane();
-			pane.getChildren().addAll(level1.drawLevel(),enemy.drawEnemy(enemy.getPosition()));
+			
+			GridPane grid = level1.drawLevel();
+			
+			
+			
+			pane.getChildren().addAll(grid,enemy.drawEnemy(enemy.getPosition()));
 			root.setCenter(pane);
 
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

@@ -4,6 +4,7 @@ import enemy.Enemy;
 import java.util.ArrayList;
 import javafx.geometry.Point2D;
 
+//150124005 Talha Zencirkıran
 public class Projectile {
     private int damage;
     private Tower sourceTower;

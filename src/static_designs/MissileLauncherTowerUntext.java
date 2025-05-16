@@ -1,62 +1,35 @@
-package tower;
+package static_designs;
 
-import java.util.ArrayList;
-
-import enemy.Enemy;
-import javafx.geometry.Point2D;
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
-//150123012 Arda Cenker Karagöz - 150124005 Talha Zencirkıran - 150123002 Ali Faik Aksoy(tasarım)
-public class MissileLauncherTower extends Tower {
-	
-	private double effectRange;
-	
-	
-	public MissileLauncherTower(Point2D position) {
-		super(position);
-		this.setPrice(200);
-		this.setRange(1.0);
-		this.setFireRate(1.5);
-		this.setEffectRange(1.0);
-	}
+//150123002 Ali Faik Aksoy
+public class MissileLauncherTowerUntext extends Application {
+    @Override
+    public void start(Stage primaryStage) {
+        // Kule tasarımını oluştur
+        Group castleGroup = createCastle();
 
-	public double getEffectRange() {
-		return effectRange;
-	}
+        // Kuleyi bir sahneye ekle
+        Pane pane = new Pane();
+        pane.getChildren().add(castleGroup);
 
-	public void setEffectRange(double effectRange) {
-		this.effectRange = effectRange;
-	}
+        Scene scene = new Scene(pane, 1920, 1080);
+        primaryStage.setTitle("Castle Design");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
-	@Override
-	public void shoot(ArrayList<Enemy> enemies) {
-		for(int i = 0; i < enemies.size(); i++) {
-			
-			//recognizing target
-			target(enemies.get(i));
-		
-			//if canShoot is true and target's health isn't 0, we reduce the health until it becomes 0
-			while(getTarget().getHealth() != 0 && canShoot()) {
-				getTarget().setHealth(getTarget().getHealth() - getBulletDamage());
-			}
-		}
-	}
-
-	//this method recognizes the enemy as a target.
-	@Override
-	public void target(Enemy enemy) {
-		//if enemy is in range, it becomes target
-		if(calculateDistance(enemy.getPosition()) <= getRange()) {
-			setTarget(enemy);
-		}
-	}
-	
-	//this method draws missile launcher tower
-	@Override
-	public Pane drawTower() {
-		Pane castleGroup = new Pane();
+    // Kule tasarımını oluşturan metot
+    public Group createCastle() {
+        Group castleGroup = new Group();
 
         // Kule gövdesi
         Rectangle leftSecBody = new Rectangle(200, 230, 200, 200);
@@ -129,17 +102,25 @@ public class MissileLauncherTower extends Tower {
         midDoor.setFill(Color.BLACK);
 
         // Tüm parçaları gruba ekle
-        castleGroup.getChildren().addAll(
+        Group castleFigureGroup = new Group(
             leftBody, rightBody, leftSecBody, rightSecBody, leftSecShadow, rightSecShadow,
             leftUp1, leftUp2, leftUp3, leftUp4, rightUp1, rightUp2, rightUp3, rightUp4,
             midBody, rightShadow, rightShadow1, rightShadow2, rightShadow3, rightShadow4,
             leftShadow1, leftShadow2, leftShadow3, leftShadow4,
             leftDoor, rightDoor, leftSecDoor, rightSecDoor, midDoor
         );
-        
-        castleGroup.setScaleX(0.05);
-        castleGroup.setScaleY(0.08);
+
+        // VBox oluştur ve kale figürü ile yazıyı ekle
+        VBox castleVBox = new VBox(5, castleFigureGroup);
+        castleVBox.setAlignment(Pos.CENTER);
+
+        // VBox'ı ana gruba ekle
+        castleGroup.getChildren().add(castleVBox);
 
         return castleGroup;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

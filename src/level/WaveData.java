@@ -1,5 +1,6 @@
 package level;
 
+//150123012 Arda Cenker Karagöz
 public class WaveData {
 	//class for handling enemy waves
 	private int enemyCount;
@@ -12,6 +13,7 @@ public class WaveData {
 		this.delay = delay;
 	}
 	
+	//getter and setters
 	public int getDelay() {
 		return delay;
 	}

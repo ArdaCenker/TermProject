@@ -7,6 +7,7 @@ import enemy.Enemy;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
+//150123012 Arda Cenker Karagöz - 150124005 Talha Zencirkıran
 public abstract class Tower {
 	
 	private int price;

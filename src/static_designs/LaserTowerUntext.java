@@ -1,56 +1,40 @@
-package tower;
+package static_designs;
 
-import java.util.ArrayList;
-
-import enemy.Enemy;
-import javafx.geometry.Point2D;
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
-//150123012 Arda Cenker Karagöz - 150124005 Talha Zencirkıran - 150123002 Ali Faik Aksoy
-public class LaserShotTower extends Tower {
+//150123002 Ali Faik Aksoy
+public class LaserTowerUntext extends Application {
+    @Override
+    public void start(Stage primaryStage) {
+        // Kale figürünü oluştur
+        Group castleGroup = createCastle();
 
-	public LaserShotTower(Point2D position) {
-		super(position);
-		this.setPrice(120);
-		this.setRange(1.0);
-		this.setFireRate(1.5);
-	}
-	
-	
-	
-	//HER FRAMEDE BELİRLİ BİR MİKTAR CAN AZALTMALI MERMİ GİBİ DEĞİL
-	@Override
-	public void shoot(ArrayList<Enemy> enemies) {
+        castleGroup.setScaleX(0.5);
+        castleGroup.setScaleY(0.5);
 
-		for(int i = 0; i < enemies.size(); i++) {
+        // Kale figürünü bir sahneye ekle
+        Pane pane = new Pane();
+        pane.getChildren().add(castleGroup);
 
-			target(enemies.get(i));
-		
-			//if canShoot is true and target's health isn't 0, we reduce the health until it becomes 0
-			while(getTarget().getHealth() != 0 && canShoot()) {
-				getTarget().setHealth(getTarget().getHealth() - getBulletDamage());
-			}
-		}
-	}
-	
-	//this method recognizes the enemy as a target.
-	@Override
-	public void target(Enemy enemy) {
-		//if enemy is in range, it becomes target
-		if(calculateDistance(enemy.getPosition()) <= getRange()) {
-			setTarget(enemy);
-		}
-	}
+        Scene scene = new Scene(pane, 1920, 1080);
+        primaryStage.setTitle("Laser Tower Design");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
+    // Kale figürünü oluşturan metot
+    public Group createCastle() {
+        Group castleGroup = new Group();
 
-	//this method draws laser shot tower
-	@Override
-	public Pane drawTower() {
-		Pane castleGroup = new Pane();
-
-        //Tower body
+        // Kale gövdesi
         Rectangle secBody = new Rectangle(670, 230, 170, 170);
         secBody.setFill(Color.GRAY);
         secBody.setStroke(Color.BLACK);
@@ -117,17 +101,24 @@ public class LaserShotTower extends Tower {
         Rectangle door = new Rectangle(715, 500, 70, 100);
         door.setFill(Color.BLACK);
 
-        //Add all parts to the group
-        castleGroup.getChildren().addAll(
+        // Tüm parçaları gruba ekle
+        Group castleFigureGroup = new Group(
             secBody, secUp1, secUp2, secUp3, secUp4,
             secShadow1, secShadow2, secShadow3, secShadow4, secShadow,
             body, up1, up2, up3, up4, shadow, shadow1, shadow2, shadow3, shadow4, door
         );
-        
-        castleGroup.setScaleX(0.1);
-        castleGroup.setScaleY(0.1);
+
+        // VBox oluştur ve kale figürü ile yazıyı ekle
+        VBox castleVBox = new VBox(5, castleFigureGroup);
+        castleVBox.setAlignment(Pos.CENTER);
+
+        // VBox'ı ana gruba ekle
+        castleGroup.getChildren().add(castleVBox);
 
         return castleGroup;
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

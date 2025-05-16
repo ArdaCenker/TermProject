@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 
+//150124005 Talha Zencirkıran
 public class Enemy {
 	
 	private int health;

@@ -41,7 +41,8 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
-			// === Animation Loop (ADDED) ===
+			// Animation Timer: Enemy Moves, Enemy finds its coordinates accurately but can't be shown
+			// it in the exact coordinates where it is calculating.
 			AnimationTimer timer = new AnimationTimer() {
 				private long lastUpdate = 0;
 
